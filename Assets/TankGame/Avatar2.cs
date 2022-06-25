@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Avatar : MonoBehaviour
+public class Avatar2 : MonoBehaviour
 {
 
     [SerializeField] float speed;
@@ -9,7 +9,6 @@ public class Avatar : MonoBehaviour
     [SerializeField] float accelerate;
     [SerializeField] float angularSpeed;
     [SerializeField] Damageable damageable;
-
     [SerializeField] Space movementSpace = Space.World;
 
     [SerializeField] GameObject projectilePrototype;
@@ -26,7 +25,7 @@ public class Avatar : MonoBehaviour
 
     void TryShoot()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.RightControl))
         {
             GameObject go = Instantiate(projectilePrototype);
             go.SetActive(true);
@@ -40,12 +39,12 @@ public class Avatar : MonoBehaviour
 
     void Move()
     {
-        bool right = Input.GetKey(KeyCode.D);
-        bool left = Input.GetKey(KeyCode.A);
+        bool right = Input.GetKey(KeyCode.RightArrow);
+        bool left = Input.GetKey(KeyCode.LeftArrow);
         float xMovement = ToNumber(right, left);
 
-        bool up = Input.GetKey(KeyCode.W);
-        bool down = Input.GetKey(KeyCode.S);
+        bool up = Input.GetKey(KeyCode.UpArrow);
+        bool down = Input.GetKey(KeyCode.DownArrow);
         float zMovement = ToNumber(up, down);
 
         if (speed < maxspeed && (right || left || up || down))

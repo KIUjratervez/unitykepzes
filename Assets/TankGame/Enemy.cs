@@ -2,14 +2,28 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    [SerializeField] Transform target1;
+    [SerializeField] Transform target2;
     [SerializeField] AnimationCurve speedOverDistance;
-
+    Vector3 targetPos;
 
     private void Update()
     {
-        Vector3 targetPos = target.position;
         Vector3 enemyPos = transform.position;
+
+        if (target2 != null)
+        {
+            if ((target1.position - transform.position).magnitude < (target2.position - transform.position).magnitude)
+            {
+                targetPos = target1.position;
+            }
+            else
+                targetPos = target2.position;
+        }
+        else if (target1 != null)
+            targetPos = target1.position;
+        else
+            targetPos = enemyPos;
 
         Vector3 movement = targetPos - enemyPos;
 
